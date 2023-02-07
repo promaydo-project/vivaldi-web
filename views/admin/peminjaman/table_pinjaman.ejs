@@ -1,0 +1,91 @@
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <!-- Button trigger modal -->
+    <button
+      type="button"
+      class="btn btn-primary"
+      data-toggle="modal"
+      data-target="#add-modal"
+    >
+      Tambah Pinjaman Buku
+    </button>
+    <button
+      type="button"
+      class="btn btn-primary"
+      data-toggle="modal"
+      data-target="#add-modal-pengembalian"
+    >
+      Pengembalian Buku
+    </button>
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table
+        class="table table-bordered"
+        id="dataTable"
+        width="100%"
+        cellspacing="0"
+      >
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Tanggal Peminjaman</th>
+            <th>Tanggal Pengembalian</th>
+            <th>Nama Buku</th>
+            <th>Peminjam</th>
+            <th>Keterlambatan</th>
+            <th>Denda</th>
+            <th>Kelas</th>
+            <th>Petugas</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for(let i = 0; i < loan.length; i++) { %>
+          <tr>
+            <td><%= i + 1 %></td>
+            <td><%= loan[i].dateLoan.toLocaleString().split(',')[0] %></td>
+            <td><%= loan[i].dateReturn.toLocaleString().split(',')[0] %></td>
+            <td><%= loan[i].booksId.title%></td>
+            <td><%= loan[i].memberId.name%></td>
+            <td>
+              <% if (loan[i].dateReturn.getDate() - new Date().getDate() > 0) {
+              %> <%= 0 %> <% } else { %> <%= loan[i].dateReturn.getDate() - new
+              Date().getDate() %> <% } %> Hari
+            </td>
+            <td>
+              <%if (loan[i].dateReturn.getDate() - new Date().getDate() < 0) {
+              %> <%= (new Date().getDate() - loan[i].dateReturn.getDate()) * 500
+              %> <% } else { %> <%= 0 %> <% } %>
+            </td>
+            <td><%= loan[i].memberId.kelas%></td>
+            <td><%= loan[i].officerId.name%></td>
+            <td>
+              <form
+                action="/admin/peminjaman/<%= loan[i].id %>?_method=DELETE"
+                method="post"
+              >
+                <a
+                  href="javascript:void()"
+                  type="button"
+                  class="btn btn-warning btn-circle button-update"
+                  data-id="<%= loan[i].id %>"
+                  data-dateloan="<%= loan[i].dateLoan.toLocaleString().split(',')[0] %>"
+                  data-datereturn="<%= loan[i].dateReturn.toLocaleString().split(',')[0] %>"
+                  data-booksid="<%= loan[i].booksId.title %>"
+                  data-memberid="<%= loan[i].memberId.name %>"
+                  data-officersid="<%= loan[i].officerId.name %>"
+                  ><i class="fas fa-edit"></i
+                ></a>
+                <button type="submit" class="btn btn-danger btn-circle">
+                  <i class="fas fa-trash"></i>
+                </button>
+              </form>
+            </td>
+          </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

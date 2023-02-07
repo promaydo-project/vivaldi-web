@@ -1,0 +1,66 @@
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <!-- Button trigger modal -->
+    <button
+      type="button"
+      class="btn btn-primary"
+      data-toggle="modal"
+      data-target="#add-modal"
+    >
+      Tambah Petugas
+    </button>
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table
+        class="table table-bordered"
+        id="dataTable"
+        width="100%"
+        cellspacing="0"
+      >
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Nama</th>
+            <th>Kode Petugas</th>
+            <th>Jenis Kelamin</th>
+            <th>Tahun Lahir</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for(let i = 0; i < officer.length; i++) { %>
+          <tr>
+            <td><%= i + 1 %></td>
+            <td><%= officer[i].name %></td>
+            <td><%= officer[i].code %></td>
+            <td><%= officer[i].gender %></td>
+            <td><%= officer[i].lahir.toLocaleString().split(',')[0]%></td>
+            <td>
+              <form
+                action="/admin/petugas/<%= officer[i].id %>?_method=DELETE"
+                method="post"
+              >
+                <a
+                  href="javascript:void()"
+                  type="button"
+                  class="btn btn-warning btn-circle button-update"
+                  data-id="<%= officer[i].id %>"
+                  data-name="<%= officer[i].name %>"
+                  data-code="<%= officer[i].code %>"
+                  data-gender="<%= officer[i].gender %>"
+                  data-lahir="<%= officer[i].lahir %>"
+                  ><i class="fas fa-edit"></i
+                ></a>
+                <button type="submit" class="btn btn-danger btn-circle">
+                  <i class="fas fa-trash"></i>
+                </button>
+              </form>
+            </td>
+          </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

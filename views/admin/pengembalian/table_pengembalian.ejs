@@ -1,0 +1,47 @@
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <!-- Button trigger modal -->
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table
+        class="table table-bordered"
+        id="dataTable"
+        width="100%"
+        cellspacing="0"
+      >
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Tanggal Pengembalian</th>
+            <th>Nama Buku</th>
+            <th>Peminjam</th>
+            <th>Petugas</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for(let i = 0; i < back.length; i++) { %>
+          <tr>
+            <td><%= i + 1 %></td>
+            <td><%=back[i].dateReturn.toLocaleString().split(',')[0] %></td>
+            <td><%=back[i].booksId.title%></td>
+            <td><%=back[i].memberId.name%></td>
+            <td><%=back[i].officerId.name%></td>
+            <td>
+              <form
+                action="/admin/pengembalian/<%= back[i].id %>?_method=DELETE"
+                method="post"
+              >
+                <button type="submit" class="btn btn-danger btn-circle">
+                  <i class="fas fa-trash"></i>
+                </button>
+              </form>
+            </td>
+          </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

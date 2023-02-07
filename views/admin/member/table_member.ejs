@@ -1,0 +1,66 @@
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <!-- Button trigger modal -->
+    <button
+      type="button"
+      class="btn btn-primary"
+      data-toggle="modal"
+      data-target="#add-modal"
+    >
+      Tambah Anggota
+    </button>
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table
+        class="table table-bordered"
+        id="dataTable"
+        width="100%"
+        cellspacing="0"
+      >
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>NISN</th>
+            <th>Nama Lengkap</th>
+            <th>Kelas</th>
+            <th>Tahun Masuk</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for(let i = 0; i < member.length; i++) { %>
+          <tr>
+            <td><%= i + 1 %></td>
+            <td><%= member[i].nisn %></td>
+            <td><%= member[i].name %></td>
+            <td><%= member[i].kelas %></td>
+            <td><%= member[i].tahun.toLocaleString().split(',')[0] %></td>
+            <td>
+              <form
+                action="/admin/member/<%= member[i].id %>?_method=DELETE"
+                method="post"
+              >
+                <a
+                  href="javascript:void()"
+                  type="button"
+                  class="btn btn-warning btn-circle button-update"
+                  data-id="<%= member[i].id %>"
+                  data-name="<%= member[i].name %>"
+                  data-nisn="<%= member[i].nisn %>"
+                  data-kelas="<%= member[i].kelas %>"
+                  data-tahun="<%= member[i].tahun %>"
+                  ><i class="fas fa-edit"></i
+                ></a>
+                <button type="submit" class="btn btn-danger btn-circle">
+                  <i class="fas fa-trash"></i>
+                </button>
+              </form>
+            </td>
+          </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

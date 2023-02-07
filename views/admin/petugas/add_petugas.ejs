@@ -1,0 +1,40 @@
+<!-- Modal -->
+<div class="modal fade" id="add-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Petugas</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+
+            <form action="/admin/petugas" method="post">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="name">Nama Petugas</label>
+                        <input type="text" class="form-control" name="name" id="name" autocomplete="off" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="code">Kode Petugas</label>
+                        <input type="text" class="form-control" name="code" id="code" autocomplete="off" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="gender">Jenis Kelamin</label>
+                        <input type="text" class="form-control" name="gender" id="gender" autocomplete="off" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Tahun Lahir</label>
+                        <input type="date" class="form-control" name="lahir" id="lahir" autocomplete="off" required>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Tambah Data</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>

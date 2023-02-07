@@ -1,0 +1,66 @@
+<!-- Modal -->
+<div class="modal fade" id="edit-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit Perpanjangan Peminjaman Buku</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+
+            <form action="/admin/peminjaman?_method=PUT" method="post">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="name">Tanggal Pengembalian Awal</label>
+                        <% for(let i = 0; i< loan.length; i++){ %>
+                        <input type="text" class="form-control dateReturn" value="<%= loan[i].dateReturn.toLocaleString().split(',')[0] %>" name="dateReturn" autocomplete="off" disabled>
+                        <%}%>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Tanggal Perpanjangan Peminjaman</label>
+                        <input type="date" class="form-control dateLoan" name="dateLoan" autocomplete="off" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Tanggal Pengembalian Akhir</label>
+                        <input type="date" class="form-control dateReturn" name="dateReturn" autocomplete="off" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Nama Buku</label>
+                        <select class="form-control" name="booksId">
+                          <option value="">--- Pilih Nama Buku ---</option>
+                          <% for(let i = 0; i< book.length; i++){ %>
+                          <option value="<%= book[i].id %>"><%= book[i].title %></option>
+                          <%}%>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Peminjam</label>
+                        <select class="form-control" name="memberId">
+                          <option value="">--- Pilih Peminjam ---</option>
+                          <% for(let i = 0; i< member.length; i++){ %>
+                          <option value="<%= member[i].id %>"><%= member[i].name %></option>
+                          <%}%>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Petugas</label>
+                        <select class="form-control" name="officerId">
+                          <option value="">--- Pilih Petugas ---</option>
+                          <% for(let i = 0; i< officer.length; i++){ %>
+                          <option value="<%= officer[i].id %>"><%= officer[i].name %></option>
+                          <%}%>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <input type="hidden" class="id" name="id">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Tambah Data</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
